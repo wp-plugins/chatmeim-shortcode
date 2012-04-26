@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a jabber/xmpp group chat for your wordrepss.
-Version: 1.0
+Version: 1.0.1
 Author: Thomas Camaran
 Author URI: http://www.chatme.im
 */
@@ -33,7 +33,7 @@ add_action( 'init', 'my_plugin_init' );
 
 function my_plugin_init() {
       $plugin_dir = basename(dirname(__FILE__));
-      load_plugin_textdomain( 'chatmini', null, $plugin_dir );
+      load_plugin_textdomain( 'chatmini', null, $plugin_dir . '/languages/' );
 }
 
 function get_chatme_mini() {
