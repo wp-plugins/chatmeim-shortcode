@@ -2,8 +2,8 @@
 /*
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
-Description: This plugin add the javascript code for Chatme.im mini a jabber group chat for you wordrepss.
-Version: 1.0 beta 1
+Description: This plugin add the javascript code for Chatme.im mini a jabber/xmpp group chat for your wordrepss.
+Version: 1.0 beta 2
 Author: Thomas Camaran
 Author URI: http://www.chatme.im
 */
