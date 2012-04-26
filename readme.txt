@@ -1,17 +1,17 @@
 === Chatme.im Mini ===
-Contributors: Thomas Cmaran
+Contributors: Thomas Camaran
 Donate link: http://www.chatme.im
-Tags: chat, jabber, jappix, mini
+Tags: chat, jabber, jappix, mini, xmpp
 Requires at least: 3.3
-Tested up to: 3.3
+Tested up to: 3.4
 Stable tag: 1.0 beta 1
 
-This plugin add the javascript code for Chatme.im mini a jabber group chat for you wordrepss.
+This plugin add the javascript code for Chatme.im mini a jabber group chat for your wordrepss.
 
 == Description ==
 
-This plugin add the javascript code for Chatme.im mini a jabber group chat for you wordrepss. 
-It's a facebook-like chat based on jabber.
+This plugin add the javascript code for Chatme.im mini a jabber/xmpp group chat for your wordrepss. 
+It's a facebook-like chat based on jabber/xmpp.
 
 
 == Installation ==
