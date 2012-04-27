@@ -4,17 +4,26 @@ Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.0.2.1
+Stable tag: 1.0.3
 
-This plugin add the javascript code for Chatme.im mini a jabber/XMPP group chat for your wordrepss.
+This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress.
 
 == Description ==
 
-This plugin add the javascript code for Chatme.im mini a jabber/XMPP group chat for your wordrepss. 
-It's a facebook-like chat based on jabber/XMPP.
+This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress. 
+It's a facebook-like chat based on Jabber/XMPP.
 
 For more information, check out [chatme.im](http://chatme.im/) and [webchat](https://webchat.chatme.im/).
 
+Special Thanks:
+
+* Neustradamus for french translation
+* To my professor for moral support
+* To my sister for having tolerated
+* My doctor for support
+* My work for the economic support
+
+Hand-crafted, and made with love, in [Rosolina](http://rosolina.me), Italy.
 
 == Installation ==
 
@@ -35,7 +44,7 @@ The default room is piazza.
 
 = Can i control the chat room with a desktop client? =
 
-Yes!!! it's a jabber/XMPP server, you see [here](http://chatme.im/prima-connessione/).
+Yes!!! it's a Jabber/XMPP server, you see [here](http://chatme.im/prima-connessione/).
 
 == Screenshots ==
 
@@ -43,6 +52,9 @@ Yes!!! it's a jabber/XMPP server, you see [here](http://chatme.im/prima-connessi
 2. The chat admin panel
 
 == Changelog ==
+
+= 1.0.3  =
+* Add french translation (thank you Neustradamus)
 
 = 1.0.2  =
 * Add Resource in mini chat
@@ -62,6 +74,9 @@ Yes!!! it's a jabber/XMPP server, you see [here](http://chatme.im/prima-connessi
 * First public version
 
 == Upgrade Notice ==
+
+= 1.0.3  =
+* Add french translation  (thank you Neustradamus)
 
 = 1.0.2  =
 * Add Resource in mini chat
