@@ -3,12 +3,12 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a jabber/xmpp group chat for your wordrepss.
-Version: 1.0.1
+Version: 1.0.2
 Author: Thomas Camaran
 Author URI: http://www.chatme.im
 */
 
-/*  Copyright 2011  Pavel Aurélien  (email : camaran@gmail.com)
+/*  Copyright 2012  Thomas Camaran  (email : camaran@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,6 +69,7 @@ function get_chatme_mini() {
    var $jappix = jQuery.noConflict();
    $jappix(document).ready(function() {
       MINI_GROUPCHATS = ['.$group.'];
+      MINI_RESOURCE = "'.$_SERVER['SERVER_NAME'].'";
       MINI_ANIMATE = '.$animate.';
       launchMini('.$auto_login.', '.$auto_show.', "anonymous.chatme.im");
    });
