@@ -4,7 +4,7 @@ Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.0.2
+Stable tag: 1.0.2.1
 
 This plugin add the javascript code for Chatme.im mini a jabber/XMPP group chat for your wordrepss.
 
