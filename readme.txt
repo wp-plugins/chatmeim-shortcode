@@ -25,6 +25,8 @@ Special Thanks:
 
 Hand-crafted, and made with love, in [Rosolina](http://rosolina.me), Italy.
 
+Based on [Jappix](https://project.jappix.com/) and [Jappix Mini](https://mini.jappix.com/).
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
