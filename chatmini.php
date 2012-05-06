@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress.
-Version: 1.0.4
+Version: 1.0.5
 Author: Thomas Camaran
 Author URI: http://www.chatme.im
 */
@@ -144,6 +144,7 @@ function mini_jappix_options() {
         <option value="pl" <?php selected('pl', get_option('language')); ?>>Polski</option>
         <option value="ru" <?php selected('ru', get_option('language')); ?>>Русский</option>
         <option value="sv" <?php selected('sv', get_option('language')); ?>>Svenska</option>
+        <option value="hu" <?php selected('hu', get_option('language')); ?>>Hungarian</option>
         </select>
         </td>
         </tr>
