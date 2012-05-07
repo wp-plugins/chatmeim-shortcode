@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress.
-Version: 1.0.5
+Version: 1.0.6
 Author: Thomas Camaran
 Author URI: http://www.chatme.im
 */
@@ -25,6 +25,14 @@ Author URI: http://www.chatme.im
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+//Custom Variables (YOU NOT EDIT)
+$GLOBALS['$jappix_url'] = "https://webchat.chatme.im"; //jappix installation
+$GLOBALS['conference'] = "@conference.chatme.im"; //server of conference
+$GLOBALS['anonymous'] = "anonymous.chatme.im"; //Server for anonymous chat
+$GLOBALS['resource'] = $_SERVER['SERVER_NAME']; //resource for chat
+$GLOBALS['default_room'] = "piazza"; //default room
+$GLOBALS['style'] = "<style type=\"text/css\">#jappix_popup { z-index:99999 !important }</style>"; //Style theme compatibility
+
 add_action('wp_head', 'get_chatme_mini');
 add_action('admin_menu', 'chatme_mini_menu');
 add_action('admin_init', 'register_mysettings' );
@@ -37,6 +45,7 @@ function my_plugin_init() {
 }
 
 function get_chatme_mini() {
+
 	if(get_option('auto_login') == 1)
 		$auto_login = "true";
 	else
@@ -52,26 +61,26 @@ function get_chatme_mini() {
 	if(get_option('yet_jquery') != 1)
 		$jquery = "&amp;f=jquery.js";
 	if(get_option('join_groupchats') == '')
-		$join_groupchats = "piazza";
+		$join_groupchats = $GLOBALS['default_room'];
 	else
 		$join_groupchats = get_option('join_groupchats');
 	$groups = explode(',', $join_groupchats);
 	foreach ($groups as $value) {
-		$group .= '"'.trim($value).'@conference.chatme.im", '; 
+		$group .= '"'.trim($value) . $GLOBALS['conference'] .'", '; 
 	}
 	$group = substr ($group, 0, -2);
-    $lng = get_option('language');
-	echo "\n".'<style type="text/css">#jappix_popup { z-index:99999 !important }</style>';
-	echo "\n".'<script type="text/javascript" src="https://webchat.chatme.im/php/get.php?l='.$lng.'&amp;t=js&amp;g=mini.xml'.$jquery.'"></script>
+	$lng = get_option('language');
+	echo "\n".$GLOBALS['style'];
+	echo "\n".'<script type="text/javascript" src="'.$GLOBALS['$jappix_url'].'/php/get.php?l='.$lng.'&amp;t=js&amp;g=mini.xml'.$jquery.'"></script>
 
 <script type="text/javascript">
 /* <![CDATA[ */
    var $jappix = jQuery.noConflict();
    $jappix(document).ready(function() {
       MINI_GROUPCHATS = ['.$group.'];
-      MINI_RESOURCE = "'.$_SERVER['SERVER_NAME'].'";
+      MINI_RESOURCE = "'.$GLOBALS['resource'].'";
       MINI_ANIMATE = '.$animate.';
-      launchMini('.$auto_login.', '.$auto_show.', "anonymous.chatme.im");
+      launchMini('.$auto_login.', '.$auto_show.', "'.$GLOBALS['anonymous'].'");
    });
 /* ]]> */ 
 </script>';
@@ -121,7 +130,7 @@ function mini_jappix_options() {
 		
 		<tr valign="top">
         <th scope="row"><?php _e("Chat rooms to join (if any)", 'chatmini'); ?></th>
-        <td><input type="text" name="join_groupchats" value="<?php echo get_option('join_groupchats'); ?>" /> @conference.chatme.im<br/><?php _e("For more use comma separator (example: piazza, scuola)", 'chatmini'); ?></td>
+        <td><input type="text" name="join_groupchats" value="<?php echo get_option('join_groupchats'); ?>" /> <?php echo $GLOBALS['conference']; ?><br/><?php _e("For more use comma separator (example: piazza, scuola)", 'chatmini'); ?></td>
         </tr>
 		
 		<tr valign="top">
