@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress.
-Version: 1.0.6
+Version: 1.1
 Author: Thomas Camaran
 Author URI: http://www.chatme.im
 */
@@ -26,11 +26,11 @@ Author URI: http://www.chatme.im
 */
 
 //Custom Variables (YOU NOT EDIT)
-$GLOBALS['$jappix_url'] = "https://webchat.chatme.im"; //jappix installation
-$GLOBALS['conference'] = "@conference.chatme.im"; //server of conference
-$GLOBALS['anonymous'] = "anonymous.chatme.im"; //Server for anonymous chat
-$GLOBALS['resource'] = $_SERVER['SERVER_NAME']; //resource for chat
-$GLOBALS['default_room'] = "piazza"; //default room
+$GLOBALS['$jappix_url'] = "https://wpchat.chatme.im"; 	//jappix installation
+$GLOBALS['conference'] = "@conference.chatme.im"; 		//server of conference
+$GLOBALS['anonymous'] = "anonymous.chatme.im"; 			//Server for anonymous chat
+$GLOBALS['resource'] = $_SERVER['SERVER_NAME']; 		//resource for chat
+$GLOBALS['default_room'] = "piazza"; 					//default room
 $GLOBALS['style'] = "<style type=\"text/css\">#jappix_popup { z-index:99999 !important }</style>"; //Style theme compatibility
 
 add_action('wp_head', 'get_chatme_mini');
@@ -45,7 +45,11 @@ function my_plugin_init() {
 }
 
 function get_chatme_mini() {
-
+	if(get_option('all') == 1 || get_option('all') == '')
+		$all = true;
+	else
+		$all = false;
+if ($all || is_user_logged_in()) {
 	if(get_option('auto_login') == 1)
 		$auto_login = "true";
 	else
@@ -70,6 +74,7 @@ function get_chatme_mini() {
 	}
 	$group = substr ($group, 0, -2);
 	$lng = get_option('language');
+	$nickname = get_userdata(get_current_user_id())->user_login;
 	echo "\n".$GLOBALS['style'];
 	echo "\n".'<script type="text/javascript" src="'.$GLOBALS['$jappix_url'].'/php/get.php?l='.$lng.'&amp;t=js&amp;g=mini.xml'.$jquery.'"></script>
 
@@ -80,11 +85,12 @@ function get_chatme_mini() {
       MINI_GROUPCHATS = ['.$group.'];
       MINI_RESOURCE = "'.$GLOBALS['resource'].'";
       MINI_ANIMATE = '.$animate.';
+      MINI_NICKNAME = "'.$nickname.'";
       launchMini('.$auto_login.', '.$auto_show.', "'.$GLOBALS['anonymous'].'");
    });
 /* ]]> */ 
 </script>';
-
+}
 }
 
 function chatme_mini_menu() {
@@ -99,6 +105,7 @@ function register_mysettings() {
 	register_setting('mini_chat', 'auto_show');
 	register_setting('mini_chat', 'animate');
 	register_setting('mini_chat', 'join_groupchats');
+	register_setting('mini_chat', 'all');
 }
 
 function mini_jappix_options() {
@@ -136,6 +143,11 @@ function mini_jappix_options() {
 		<tr valign="top">
         <th scope="row"><?php _e("jQuery is yet included", 'chatmini'); ?></th>
         <td><input type="checkbox" name="yet_jquery" value="1" <?php checked('1', get_option('yet_jquery')); ?> /></td>
+        </tr>
+
+		<tr valign="top">
+        <th scope="row"><?php _e("Available only for logged users", 'chatmini'); ?></th>
+        <td><input type="checkbox" name="all" value="0" <?php checked('0', get_option('all')) ?> /></td>
         </tr>
 
         <tr valign="top">

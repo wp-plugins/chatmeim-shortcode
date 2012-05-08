@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2012-04-27 21:36+0100\n"
+"PO-Revision-Date: 2012-05-08 18:53+0100\n"
 "Last-Translator: Thomas Camaran\n"
 "Language-Team: \n"
 
@@ -47,6 +47,10 @@ msgstr "jQuery est encore inclus"
 #: chatmini.php:132
 msgid "Mini Jappix language"
 msgstr "Langue de Chat Mini"
+
+#: chatmini.php:149
+msgid "Available only for logged users"
+msgstr "Disponible pour les utilisateurs connectés"
 
 #: chatmini.php:153
 msgid "Save Changes"
