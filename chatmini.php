@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress.
-Version: 1.1.2
+Version: 1.1.3
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -26,12 +26,12 @@ Author URI: http://www.chatme.im
 */
 
 //Custom Variables (YOU NOT EDIT)
-$GLOBALS['$jappix_url'] = "https://wpchat.chatme.im"; 	//jappix installation
+$GLOBALS['jappix_url'] = "https://wpchat.chatme.im"; 	//jappix installation
 $GLOBALS['conference'] = "@conference.chatme.im"; 		//server of conference
 $GLOBALS['anonymous'] = "anonymous.chatme.im"; 			//Server for anonymous chat
 $GLOBALS['resource'] = $_SERVER['SERVER_NAME']; 		//resource for chat
 $GLOBALS['default_room'] = "piazza"; 					//default room
-$GLOBALS['style'] = "<style type=\"text/css\">#jappix_popup { z-index:99999 !important }</style>"; //Style theme compatibility
+$GLOBALS['style'] = "<style type=\"text/css\">#jappix_popup { z-index:99999 !important }</style>"; //Style theme compatibility 
 
 add_action('wp_head', 'get_chatme_mini');
 add_action('admin_menu', 'chatme_mini_menu');
@@ -76,7 +76,7 @@ if ($all || is_user_logged_in()) {
 	$lng = get_option('language');
 	$nickname = get_userdata(get_current_user_id())->user_login;
 	echo "\n".$GLOBALS['style'];
-	echo "\n".'<script type="text/javascript" src="'.$GLOBALS['$jappix_url'].'/php/get.php?l='.$lng.'&amp;t=js&amp;g=mini.xml'.$jquery.'"></script>
+	echo "\n".'<script type="text/javascript" src="'.$GLOBALS['jappix_url'].'/php/get.php?l='.$lng.'&amp;t=js&amp;g=mini.xml'.$jquery.'"></script>
 
 <script type="text/javascript">
 /* <![CDATA[ */
@@ -116,6 +116,7 @@ function mini_jappix_options() {
  <div class="wrap">
 <h2>Chatme.im Mini</h2>
 <p><?php _e("For more information visit <a href='http://www.chatme.im' target='_blank'>www.chatme.im</a>", 'chatmini'); ?> - <a href="https://webchat.chatme.im/?r=support" target="_blank">Support Chat Room</a></p>
+<p><?php _e("For subscribe your account visit <a href='http://chatme.im/plugins/registration/sign-up.jsp' target='_blank'>http://chatme.im/plugins/registration/sign-up.jsp</a>", 'chatmini'); ?></p>
 
 <form method="post" action="options.php">
     <?php settings_fields( 'mini_chat' ); ?>
