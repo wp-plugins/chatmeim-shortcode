@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress.
-Version: 1.1.3
+Version: 1.1.4
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -28,6 +28,7 @@ Author URI: http://www.chatme.im
 //Custom Variables (YOU NOT EDIT)
 $GLOBALS['jappix_url'] = "https://wpchat.chatme.im"; 	//jappix installation
 $GLOBALS['conference'] = "@conference.chatme.im"; 		//server of conference
+$GLOBALS['chat'] = "chatme.im"; //server of conference
 $GLOBALS['anonymous'] = "anonymous.chatme.im"; 			//Server for anonymous chat
 $GLOBALS['resource'] = $_SERVER['SERVER_NAME']; 		//resource for chat
 $GLOBALS['default_room'] = "piazza"; 					//default room
@@ -54,6 +55,10 @@ if ($all || is_user_logged_in()) {
 		$auto_login = "true";
 	else
 		$auto_login = "false";
+	if(get_option('admin_site') == '')
+		$admin_site = "admin@chatme.im";
+	else
+		$admin_site = get_option('admin_site') . "@" . $GLOBALS['chat'];		
 	if(get_option('animate') == 1)
 		$animate = "true";
 	else
@@ -82,6 +87,8 @@ if ($all || is_user_logged_in()) {
 /* <![CDATA[ */
    var $jappix = jQuery.noConflict();
    $jappix(document).ready(function() {
+   	  MINI_SUGGEST_GROUPCHATS = ["piazza@conference.chatme.im","support@conference.chatme.im"];
+      MINI_SUGGEST_CHATS = ["'.$admin_site.'"];
       MINI_GROUPCHATS = ['.$group.'];
       MINI_RESOURCE = "'.$GLOBALS['resource'].'";
       MINI_ANIMATE = '.$animate.';
@@ -106,6 +113,7 @@ function register_mysettings() {
 	register_setting('mini_chat', 'animate');
 	register_setting('mini_chat', 'join_groupchats');
 	register_setting('mini_chat', 'all');
+	register_setting('mini_chat', 'admin_site');
 }
 
 function mini_jappix_options() {
@@ -140,6 +148,11 @@ function mini_jappix_options() {
         <th scope="row"><?php _e("Chat rooms to join (if any)", 'chatmini'); ?></th>
         <td><input type="text" name="join_groupchats" value="<?php echo get_option('join_groupchats'); ?>" /> <?php echo $GLOBALS['conference']; ?><br/><?php _e("For more use comma separator (example: piazza, scuola)", 'chatmini'); ?></td>
         </tr>
+        
+        <tr valign="top">
+	    <th scope="row"><?php _e("Chat with site admin", 'chatmini'); ?></th>
+	    <td><input type="text" name="admin_site" value="<?php echo get_option('admin_site'); ?>" /> <?php echo $GLOBALS['chat']; ?></td>
+	    </tr>        
 		
 		<tr valign="top">
         <th scope="row"><?php _e("jQuery is yet included", 'chatmini'); ?></th>
