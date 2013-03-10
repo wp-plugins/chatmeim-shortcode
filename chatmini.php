@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress.
-Version: 1.1.5
+Version: 1.1.6
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -68,7 +68,7 @@ if ($all || is_user_logged_in()) {
 	else
 		$auto_show = "false";
 	if(get_option('yet_jquery') != 1)
-		$jquery = "&amp;f=jquery.js";
+		$jquery = "<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js\"></script>";
 	if(get_option('join_groupchats') == '')
 		$join_groupchats = $GLOBALS['default_room'];
 	else
@@ -81,12 +81,14 @@ if ($all || is_user_logged_in()) {
 	$lng = get_option('language');
 	$nickname = get_userdata(get_current_user_id())->user_login;
 	echo "\n".$GLOBALS['style'];
-	echo "\n".'<script type="text/javascript" src="'.$GLOBALS['jappix_url'].'/php/get.php?l='.$lng.'&amp;t=js&amp;g=mini.xml'.$jquery.'"></script>
+	echo $jquery;
+	echo "\n".'
 
 <script type="text/javascript">
 /* <![CDATA[ */
    var $jappix = jQuery.noConflict();
-   $jappix(document).ready(function() {
+   $jappix.ajaxSetup({cache: true});
+   $jappix.getScript(\''.$GLOBALS['jappix_url'].'/get.php?l='.$lng.'&amp;t=js&amp;g=mini.xml\', function()  {
    	  MINI_SUGGEST_GROUPCHATS = ["piazza@conference.chatme.im","support@conference.chatme.im"];
       MINI_SUGGEST_CHATS = ["'.$admin_site.'"];
       MINI_GROUPCHATS = ['.$group.'];
