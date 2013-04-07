@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 1.0
+Version: 1.0.1
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -40,5 +40,38 @@ function userStatus_short($atts)
 			return '<img src="http://chatme.im/plugins/presence/status?jid=' . $user . '@chatme.im" border="0" alt="Status">' . $link;		
 		}
 	}		
+//Chat Room [chatRoom anon="1"]	
+function chatRoom_short($atts)
+	{
+		extract(shortcode_atts(array(
+			'anon' => '1',
+			), $atts));
+		if ($anon == "1")  {	
+		return '<form method="get" action="https://muc.chatme.im" target="_blank" class="form-horizontal">
+            	<select name="room">
+					<option value="piazza@conference.chatme.im">Piazza</option>
+					<option value="support@conference.chatme.im">Support</option>
+					<option value="rosolina@conference.chatme.im">Rosolina</option>
+					<option value="diceluidicelei@conference.chatme.im">Dice Lui Dice Lei</option>
+                    <option value="scuola@conference.chatme.im">Basket</option>
+				</select>
+            <button type="submit">Entra nella stanza</button>
+        </form> ';
+		} else {
+		return '<form method="get" action="https://webchat.chatme.im" target="_blank">
+            	<select name="r">
+					<option value="piazza@conference.chatme.im">Piazza</option>
+					<option value="support@conference.chatme.im">Support</option>
+					<option value="rosolina@conference.chatme.im">Rosolina</option>
+					<option value="sesso@conference.chatme.im">Sesso (Richiede Password)</option>
+					<option value="diceluidicelei@conference.chatme.im">Dice Lui Dice Lei</option>
+                    <option value="scuola@conference.chatme.im">Basket</option>
+				</select>
+    			<input type="text" name="n" placeholder="Nickname" autocomplete="off">
+        	<button type="submit">Entra nella stanza</button>
+        </form> ';
+		}
+	}	
 add_shortcode( 'userStatus', 'userStatus_short' );	
+add_shortcode( 'chatRoom', 'chatRoom_short' );
 ?>
