@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 1.0.1
+Version: 1.0.2
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -46,7 +46,7 @@ function chatRoom_short($atts)
 		extract(shortcode_atts(array(
 			'anon' => '1',
 			), $atts));
-		if ($anon == "1")  {	
+		if ($anon == "0")  {	
 		return '<form method="get" action="https://muc.chatme.im" target="_blank" class="form-horizontal">
             	<select name="room">
 					<option value="piazza@conference.chatme.im">Piazza</option>

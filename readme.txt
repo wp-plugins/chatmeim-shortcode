@@ -4,7 +4,7 @@ Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp, shortcode
 Requires at least: 3.3
 Tested up to: 3.6.x
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 This plugin add ChatMe Shortcode to Wordpress.
 
@@ -44,13 +44,16 @@ user = The ChatMe User without @chatme.im
 helga = For see the status with Helga, can is: 1 for enable Helga or 0 for show the status without helga
 link = For show a link to user, can is: 1 for show the link or 0 for not show.
 
-ShortCode [chatRoom anon="1"] for show the chat Room login form, set anon=1 for anonymous form.
+ShortCode [chatRoom anon="1"] for show the chat Room login form, set anon="1" for anonymous form and anon="0" for login with chatme.im username.
 
 = Other ShortCode =
 
 Other ShortCode will be available soon with plugin update.
 
 == Changelog ==
+
+= 1.0.2 =
+* Bug Fix
 
 = 1.0.1 =
 * Add shortCode for chat room access form
@@ -59,6 +62,9 @@ Other ShortCode will be available soon with plugin update.
 * First public version
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+* Bug Fix
 
 = 1.0.1 =
 * Add shortCode for chat room access form
