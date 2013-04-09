@@ -33,6 +33,10 @@ For Every request visit our [Forum](http://chatme.im/forums)
 
 [youtube http://www.youtube.com/watch?v=KnOsh80m1FM] 
 
+For a new chat room you see the video
+
+[youtube http://www.youtube.com/watch?v=a5tBZWfEg5g] 
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
