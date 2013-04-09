@@ -31,6 +31,8 @@ Available also on [GitHub](https://github.com/camaran/chatme.im-mini)
 
 For Every request visit our [Forum](http://chatme.im/forums) 
 
+[youtube http://www.youtube.com/watch?v=KnOsh80m1FM] 
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
