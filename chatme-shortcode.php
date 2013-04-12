@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 1.0.4
+Version: 1.0.5
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -24,6 +24,10 @@ Author URI: http://www.chatme.im
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+$GLOBALS['jappix_url'] = 'https://webchat.chatme.im';
+$GLOBALS['muc_url'] = 'https://muc.chatme.im';
+$GLOBALS['domain'] = '@chatme.im';
+$GLOBALS['conference_domain'] = '@conference.chatme.im';
 //Stato utente [userStatus user="users" helga="1" link="1"]
 function userStatus_short($atts)
 	{	
@@ -33,11 +37,11 @@ function userStatus_short($atts)
 			'link' => '',
 			), $atts));
 		if ($link == "1") 
-			$link = ' <a href="xmpp:'. $user .'@chatme.im" title="Chatta con ' . $user . '@chatme.im">' . $user . '@chatme.im</a>';
+			$link = ' <a href="xmpp:'. $user . $GLOBALS['domain'] . '" title="Chatta con ' . $user . $GLOBALS['domain'] . '">' . $user . $GLOBALS['domain'] . '</a>';
 		if ($helga == "1") {
-			return  '<img src="http://chatme.im/plugins/helga/user?jid=' . $user . '@chatme.im" border="0" alt="Status">' . $link;
+			return  '<img src="http://chatme.im/plugins/helga/user?jid=' . $user . $GLOBALS['domain'] . '" border="0" alt="Status">' . $link;
 		} else {
-			return '<img src="http://chatme.im/plugins/presence/status?jid=' . $user . '@chatme.im" border="0" alt="Status">' . $link;		
+			return '<img src="http://chatme.im/plugins/presence/status?jid=' . $user . $GLOBALS['domain'] . '" border="0" alt="Status">' . $link;		
 		}
 	}		
 //Chat Room [chatRoom anon="1"]	
@@ -47,25 +51,25 @@ function chatRoom_short($atts)
 			'anon' => '1',
 			), $atts));
 		if ($anon == "0")  {	
-		return '<form method="get" action="https://muc.chatme.im" target="_blank" class="form-horizontal">
+		return '<form method="get" action="' . $GLOBALS['muc_url'] . '" target="_blank" class="form-horizontal">
             	<select name="room">
-					<option value="piazza@conference.chatme.im">Piazza</option>
-					<option value="support@conference.chatme.im">Support</option>
-					<option value="rosolina@conference.chatme.im">Rosolina</option>
-					<option value="diceluidicelei@conference.chatme.im">Dice Lui Dice Lei</option>
-                    <option value="scuola@conference.chatme.im">Basket</option>
+					<option value="piazza' . $GLOBALS['conference_domain'] . '">Piazza</option>
+					<option value="support' . $GLOBALS['conference_domain'] . '">Support</option>
+					<option value="rosolina' . $GLOBALS['conference_domain'] . '">Rosolina</option>
+					<option value="diceluidicelei' . $GLOBALS['conference_domain'] . '">Dice Lui Dice Lei</option>
+                    <option value="scuola' . $GLOBALS['conference_domain'] . '">Basket</option>
 				</select>
             <button type="submit">Entra nella stanza</button>
         </form> ';
 		} else {
-		return '<form method="get" action="https://webchat.chatme.im" target="_blank">
+		return '<form method="get" action="' . $GLOBALS['jappix_url'] . '" target="_blank">
             	<select name="r">
-					<option value="piazza@conference.chatme.im">Piazza</option>
-					<option value="support@conference.chatme.im">Support</option>
-					<option value="rosolina@conference.chatme.im">Rosolina</option>
-					<option value="sesso@conference.chatme.im">Sesso (Richiede Password)</option>
-					<option value="diceluidicelei@conference.chatme.im">Dice Lui Dice Lei</option>
-                    <option value="scuola@conference.chatme.im">Basket</option>
+					<option value="piazza' . $GLOBALS['conference_domain'] . '">Piazza</option>
+					<option value="support' . $GLOBALS['conference_domain'] . '">Support</option>
+					<option value="rosolina' . $GLOBALS['conference_domain'] . '">Rosolina</option>
+					<option value="sesso' . $GLOBALS['conference_domain'] . '">Sesso (Richiede Password)</option>
+					<option value="diceluidicelei' . $GLOBALS['conference_domain'] . '">Dice Lui Dice Lei</option>
+                    <option value="scuola' . $GLOBALS['conference_domain'] . '">Basket</option>
 				</select>
     			<input type="text" name="n" placeholder="Nickname" autocomplete="off">
         	<button type="submit">Entra nella stanza</button>
@@ -80,7 +84,7 @@ function chatRoomIframe_short()
 			'width' => '100%',
 			'height' => '100%',
 			), $atts));
-				return '<div class="cm-iframe-room"><iframe src="https://webchat.chatme.im/?r='. $room .'@conference.chatme.im" width="' . $width . '" height="' . $height . '" border="0">Il tuo browser non supporta iframe</iframe></div>';		
+				return '<div class="cm-iframe-room"><iframe src="' . $GLOBALS['jappix_url'] . '/?r='. $room . $GLOBALS['conference_domain'] . '" width="' . $width . '" height="' . $height . '" border="0">Il tuo browser non supporta iframe</iframe></div>';		
 	}		
 add_shortcode( 'userStatus', 'userStatus_short' );	
 add_shortcode( 'chatRoom', 'chatRoom_short' );
