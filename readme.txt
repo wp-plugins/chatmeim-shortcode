@@ -4,7 +4,7 @@ Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp, shortcode
 Requires at least: 3.3
 Tested up to: 3.6.x
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 
 This plugin add ChatMe Shortcode to Wordpress.
 
@@ -56,6 +56,9 @@ Other ShortCode will be available soon with plugin update.
 
 == Changelog ==
 
+= 1.0.4 =
+* Add class for iframe
+
 = 1.0.3 =
 * Add Chat Room iframe Shortocde
 
@@ -69,6 +72,9 @@ Other ShortCode will be available soon with plugin update.
 * First public version
 
 == Upgrade Notice ==
+
+= 1.0.4 =
+* Add class for iframe
 
 = 1.0.3 =
 * Add Chat Room iframe Shortocde
