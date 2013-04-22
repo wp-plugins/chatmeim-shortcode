@@ -4,7 +4,7 @@ Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp, shortcode
 Requires at least: 3.3
 Tested up to: 3.6.x
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 
 This plugin add ChatMe Shortcode to Wordpress.
 
@@ -48,6 +48,8 @@ ShortCode [chatRoom anon="1"] for show the chat Room login form, set anon="1" fo
 
 ShortCode [chatRoomIframe room="room" width="width" height="height"] for show chat room frame in page and post, set room="" with room name (default piazza), set width="" for width (default 100%) and height="" for height (default 100%).
 
+ShortCode [swatchTime] for show Internet Swatch Time
+
 [youtube http://www.youtube.com/watch?v=a5tBZWfEg5g] 
 
 = Other ShortCode =
@@ -55,6 +57,9 @@ ShortCode [chatRoomIframe room="room" width="width" height="height"] for show ch
 Other ShortCode will be available soon with plugin update.
 
 == Changelog ==
+
+= 1.0.7 = 
+* Add [swatchTime] shortcode
 
 = 1.0.6 =
 * Add new room
@@ -78,6 +83,9 @@ Other ShortCode will be available soon with plugin update.
 * First public version
 
 == Upgrade Notice ==
+
+= 1.0.7 = 
+* Add [swatchTime] shortcode
 
 = 1.0.6 =
 * Add new room

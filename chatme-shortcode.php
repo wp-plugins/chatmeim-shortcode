@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 1.0.6
+Version: 1.0.7
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -82,8 +82,14 @@ function chatRoomIframe_short()
 			'height' => '100%',
 			), $atts));
 				return '<div class="cm-iframe-room"><iframe src="' . $GLOBALS['jappix_url'] . '/?r='. $room . $GLOBALS['conference_domain'] . '" width="' . $width . '" height="' . $height . '" border="0">Il tuo browser non supporta iframe</iframe></div>';		
-	}		
+	}
+//Utenti connessi shortcode [swatchTime]
+function swatchTime_short()
+	{	
+		return "Internet Swatch Time <strong>@<!--mfunc echo date(B) -->" . date('B') . "<!--/mfunc--></strong>";
+	}			
 add_shortcode( 'userStatus', 'userStatus_short' );	
 add_shortcode( 'chatRoom', 'chatRoom_short' );
 add_shortcode( 'chatRoomIframe', 'chatRoomIframe_short' );
+add_shortcode( 'swatchTime', 'swatchTime_short' );
 ?>
