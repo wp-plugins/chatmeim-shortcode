@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 1.0.5
+Version: 1.0.6
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -28,6 +28,12 @@ $GLOBALS['jappix_url'] = 'https://webchat.chatme.im';
 $GLOBALS['muc_url'] = 'https://muc.chatme.im';
 $GLOBALS['domain'] = '@chatme.im';
 $GLOBALS['conference_domain'] = '@conference.chatme.im';
+$GLOBALS['room'] = '<option value="piazza' . $GLOBALS['conference_domain'] . '">Piazza</option>
+					<option value="support' . $GLOBALS['conference_domain'] . '">Support</option>
+					<option value="rosolina' . $GLOBALS['conference_domain'] . '">Rosolina</option>
+					<option value="diceluidicelei' . $GLOBALS['conference_domain'] . '">Dice Lui Dice Lei</option>
+                    <option value="scuola' . $GLOBALS['conference_domain'] . '">Basket</option>
+					<option value="politica' . $GLOBALS['conference_domain'] . '">Politica</option>';
 //Stato utente [userStatus user="users" helga="1" link="1"]
 function userStatus_short($atts)
 	{	
@@ -53,23 +59,14 @@ function chatRoom_short($atts)
 		if ($anon == "0")  {	
 		return '<form method="get" action="' . $GLOBALS['muc_url'] . '" target="_blank" class="form-horizontal">
             	<select name="room">
-					<option value="piazza' . $GLOBALS['conference_domain'] . '">Piazza</option>
-					<option value="support' . $GLOBALS['conference_domain'] . '">Support</option>
-					<option value="rosolina' . $GLOBALS['conference_domain'] . '">Rosolina</option>
-					<option value="diceluidicelei' . $GLOBALS['conference_domain'] . '">Dice Lui Dice Lei</option>
-                    <option value="scuola' . $GLOBALS['conference_domain'] . '">Basket</option>
+					' . $GLOBALS['room'] . '
 				</select>
             <button type="submit">Entra nella stanza</button>
         </form> ';
 		} else {
 		return '<form method="get" action="' . $GLOBALS['jappix_url'] . '" target="_blank">
             	<select name="r">
-					<option value="piazza' . $GLOBALS['conference_domain'] . '">Piazza</option>
-					<option value="support' . $GLOBALS['conference_domain'] . '">Support</option>
-					<option value="rosolina' . $GLOBALS['conference_domain'] . '">Rosolina</option>
-					<option value="sesso' . $GLOBALS['conference_domain'] . '">Sesso (Richiede Password)</option>
-					<option value="diceluidicelei' . $GLOBALS['conference_domain'] . '">Dice Lui Dice Lei</option>
-                    <option value="scuola' . $GLOBALS['conference_domain'] . '">Basket</option>
+					' . $GLOBALS['room'] . '
 				</select>
     			<input type="text" name="n" placeholder="Nickname" autocomplete="off">
         	<button type="submit">Entra nella stanza</button>
