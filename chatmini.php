@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im Mini
 Plugin URI: http://www.chatme.im/
 Description: This plugin add the javascript code for Chatme.im mini a Jabber/XMPP group chat for your WordPress.
-Version: 1.1.7
+Version: 1.1.8
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -93,6 +93,7 @@ if ($all || is_user_logged_in()) {
       MINI_RESOURCE = "'.$GLOBALS['resource'].'";
       MINI_ANIMATE = '.$animate.';
       MINI_NICKNAME = "'.$nickname.'";
+      MINI_ERROR_LINK = "http://chatme.im/forum";
       launchMini('.$auto_login.', '.$auto_show.', "'.$GLOBALS['anonymous'].'");
    });
 /* ]]> */ 
