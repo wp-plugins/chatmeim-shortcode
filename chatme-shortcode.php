@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 2.0.1
+Version: 2.0.2
 Author: camaran
 Author URI: http://www.chatme.im
 */

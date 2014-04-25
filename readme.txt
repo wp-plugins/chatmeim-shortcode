@@ -3,8 +3,8 @@ Contributors: camaran
 Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp, shortcode
 Requires at least: 3.8
-Tested up to: 3.8
-Stable tag: 2.0.1
+Tested up to: 3.9
+Stable tag: 2.0.2
 
 This plugin add ChatMe Shortcode to Wordpress.
 
@@ -58,6 +58,9 @@ Other ShortCode will be available soon with plugin update.
 == Changelog ==
 
 
+= 2.0.2 = 
+* 3.9
+
 = 2.0.1 = 
 * Fix Port
 
@@ -98,6 +101,9 @@ Other ShortCode will be available soon with plugin update.
 == Upgrade Notice ==
 
 
+
+= 2.0.2 = 
+* 3.9
 
 = 2.0.1 = 
 * Fix Port
