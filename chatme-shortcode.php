@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 2.0.3
+Version: 2.1.0
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -44,7 +44,7 @@ function userStatus_short($atts)
 		if ($link == "1") 
 			$link = ' <a href="xmpp:'. $user . '" title="Chatta con ' . $user . '">' . $user . '</a>';
 		if ($hosted == "1") {
-			return  '<img src="http://api.chatme.im/domain/status/' . $user . '" border="0" alt="Status">' . $link;
+			return  '<img src="http://api.webchat.domains/status/' . $user . '" border="0" alt="Status">' . $link;
 		} else {
 			return '<img src="http://api.chatme.im/status/' . $user . '" border="0" alt="Status">' . $link;		
 		}
@@ -79,8 +79,10 @@ function chatRoomIframe_short()
 			'room' => 'piazza',
 			'width' => '100%',
 			'height' => '100%',
+			'hosted' => '0',
 			), $atts));
-				return '<div class="cm-iframe-room"><iframe src="' . $GLOBALS['jappix_url'] . '/?r='. $room . $GLOBALS['conference_domain'] . '" width="' . $width . '" height="' . $height . '" border="0">Il tuo browser non supporta iframe</iframe></div>';		
+				if ($hosted == '1') { $chat_url = "http://webchat.domains"; } else { $chat_url = "https://webchat.chatme.im"; }
+				return '<div class="cm-iframe-room"><iframe src="' . $chat_url . '/?r='. $room . $GLOBALS['conference_domain'] . '" width="' . $width . '" height="' . $height . '" border="0">Il tuo browser non supporta iframe</iframe></div>';		
 	}
 //Utenti connessi shortcode [swatchTime]
 function swatchTime_short()
