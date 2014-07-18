@@ -3,7 +3,7 @@
 Plugin Name: Chatme.im ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 2.0.2
+Version: 2.0.3
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -26,7 +26,6 @@ Author URI: http://www.chatme.im
 */
 $GLOBALS['jappix_url'] = 'https://webchat.chatme.im';
 $GLOBALS['muc_url'] = 'https://muc.chatme.im';
-$GLOBALS['domain'] = '@chatme.im';
 $GLOBALS['conference_domain'] = '@conference.chatme.im';
 $GLOBALS['room'] = '<option value="piazza' . $GLOBALS['conference_domain'] . '">Piazza</option>
 					<option value="support' . $GLOBALS['conference_domain'] . '">Support</option>
@@ -39,15 +38,15 @@ function userStatus_short($atts)
 	{	
 		extract(shortcode_atts(array(
 			'user' => '',
-			'helga' => '0',
+			'hosted' => '0',
 			'link' => '',
 			), $atts));
 		if ($link == "1") 
-			$link = ' <a href="xmpp:'. $user . $GLOBALS['domain'] . '" title="Chatta con ' . $user . $GLOBALS['domain'] . '">' . $user . $GLOBALS['domain'] . '</a>';
-		if ($helga == "1") {
-			return  '<img src="http://api.chatme.im/status/' . $user . $GLOBALS['domain'] . '" border="0" alt="Status">' . $link;
+			$link = ' <a href="xmpp:'. $user . '" title="Chatta con ' . $user . '">' . $user . '</a>';
+		if ($hosted == "1") {
+			return  '<img src="http://api.chatme.im/domain/status/' . $user . '" border="0" alt="Status">' . $link;
 		} else {
-			return '<img src="http://api.chatme.im/status/' . $user . $GLOBALS['domain'] . '" border="0" alt="Status">' . $link;		
+			return '<img src="http://api.chatme.im/status/' . $user . '" border="0" alt="Status">' . $link;		
 		}
 	}		
 //Chat Room [chatRoom anon="1"]	

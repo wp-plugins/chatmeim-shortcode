@@ -3,8 +3,8 @@ Contributors: camaran
 Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp, shortcode
 Requires at least: 3.8
-Tested up to: 3.9
-Stable tag: 2.0.2
+Tested up to: 4.0
+Stable tag: 2.0.3
 
 This plugin add ChatMe Shortcode to Wordpress.
 
@@ -39,9 +39,10 @@ This section describes how to install the plugin and get it working.
 
 = ShortoCode Available =
 
-ShortCode [userStatus user="users" link="1"] for show the status of ChatMe user.
-user = The ChatMe User without @chatme.im
+ShortCode [userStatus user="users" link="1" hosted="0"] for show the status of ChatMe user.
+user = The ChatMe User with @chatme.im or domain
 link = For show a link to user, can is: 1 for show the link or 0 for not show.
+hosted = set 1 for chatme.im hosted domain
 
 ShortCode [chatRoom anon="1"] for show the chat Room login form, set anon="1" for anonymous form and anon="0" for login with chatme.im username.
 
@@ -57,6 +58,8 @@ Other ShortCode will be available soon with plugin update.
 
 == Changelog ==
 
+= 2.0.3=
+* Support for hosted domain (user status)
 
 = 2.0.2 = 
 * 3.9
@@ -100,7 +103,8 @@ Other ShortCode will be available soon with plugin update.
 
 == Upgrade Notice ==
 
-
+= 2.0.3=
+* Support for hosted domain (user status)
 
 = 2.0.2 = 
 * 3.9
