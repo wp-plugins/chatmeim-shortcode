@@ -3,7 +3,7 @@
 Plugin Name: ChatMe ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 2.1.2
+Version: 2.1.3
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -24,7 +24,7 @@ Author URI: http://www.chatme.im
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-$GLOBALS['jappix_url'] = 'http://webchat.chatme.im';
+$GLOBALS['jappix_url'] = 'https://webchat.chatme.im';
 $GLOBALS['muc_url'] = 'http://muc.chatme.im';
 $GLOBALS['conference_domain'] = '@conference.chatme.im';
 $GLOBALS['room'] = '<option value="piazza' . $GLOBALS['conference_domain'] . '">Piazza</option>
