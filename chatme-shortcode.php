@@ -3,7 +3,7 @@
 Plugin Name: ChatMe ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 2.1.3
+Version: 2.1.4
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -44,9 +44,9 @@ function userStatus_short($atts)
 		if ($link == "1") 
 			$link = ' <a href="xmpp:'. $user . '" title="Chatta con ' . $user . '">' . $user . '</a>';
 		if ($hosted == "1") {
-			return  '<img src="http://api.webchat.domains/status/' . $user . '" border="0" alt="Status">' . $link;
+			return  '<img src="http://webchat.domains/status/' . $user . '" border="0" alt="Status">' . $link;
 		} else {
-			return '<img src="http://api.chatme.im/status/' . $user . '" border="0" alt="Status">' . $link;		
+			return '<img src="http://webchat.chatme.im/status/' . $user . '" border="0" alt="Status">' . $link;		
 		}
 	}		
 //Chat Room [chatRoom anon="1"]	
