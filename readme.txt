@@ -3,7 +3,7 @@ Contributors: camaran
 Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp, shortcode, chatme
 Requires at least: 3.8
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 2.1.4
 
 This plugin add ChatMe Shortcode to Wordpress.
