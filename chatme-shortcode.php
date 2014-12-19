@@ -3,10 +3,12 @@
 Plugin Name: ChatMe ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 3.0
+Version: 3.0.1
 Author: camaran
 Author URI: http://www.chatme.im
 */
+
+if(!class_exists('ChatMe_mini_ShortCodes')) {
 
 class ChatMe_mini_ShortCodes {
 
@@ -110,6 +112,7 @@ private $status = "http://webchat.chatme.im/status/";
 		    }
 	    }
 
+}
 }
 new ChatMe_mini_ShortCodes;			
 ?>
