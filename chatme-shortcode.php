@@ -3,7 +3,7 @@
 Plugin Name: ChatMe ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 3.0.2
+Version: 3.0.3
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -22,6 +22,7 @@ private $room 					= '<option value="piazza@conference.chatme.im">Piazza</option
 									<option value="politica@conference.chatme.im">Politica</option>';
 private $domains_status 		= "http://webchat.domains/status/";
 private $status 				= "http://webchat.chatme.im/status/";
+private $chat_powered 			= '<div><small>Chat powered by <a href="http://chatme.im" target="_blank">ChatMe</a></small></div>';
 //Default Variables
 //userStatus
 private $userStatus_user      	= 'admin@chatme.im';
@@ -34,6 +35,7 @@ private $chatRoomIframe_room	= 'piazza';
 private $chatRoomIframe_width	= '100%';
 private $chatRoomIframe_height	= '100%';
 private $chatRoomIframe_hosted 	= false;
+private $chatRoomIframe_powered = true;
 
 	function __construct() {
 		self::register_shortcodes( $this->shortcodes_core() );
@@ -104,11 +106,14 @@ private $chatRoomIframe_hosted 	= false;
 			    'width' 	=> $this->chatRoomIframe_width,
 			    'height' 	=> $this->chatRoomIframe_height,
 			    'hosted' 	=> $this->chatRoomIframe_hosted,
+				'powered' 	=> $this->chatRoomIframe_powered,
 			    );
                 $atts = shortcode_atts( $defaults, $atts );
                 
-				$chat_url = ((bool)$atts['hosted']) ? $this->chat_domains : $chat_url = $this->jappix_url;
-				return '<div class="cm-iframe-room"><iframe src="' . $chat_url . '/?r='. $atts['room'] . $this->conference_domain . '" width="' . $atts['width'] . '" height="' . $atts['height'] . '" border="0">Il tuo browser non supporta iframe</iframe></div>';		
+				$chat_url = ((bool)$atts['hosted']) ? $this->chat_domains : $this->jappix_url;
+				$powered = ((bool)$atts['powered']) ? $this->chat_powered : '';
+				
+				return '<div class="cm-iframe-room"><iframe src="' . $chat_url . '/?r='. $atts['room'] . $this->conference_domain . '" width="' . $atts['width'] . '" height="' . $atts['height'] . '" border="0">Il tuo browser non supporta iframe</iframe>' . $powered . '</div>';		
 	    }
 
     //Internet Swatch Time [swatchTime]
