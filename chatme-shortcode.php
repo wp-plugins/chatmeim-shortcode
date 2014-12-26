@@ -3,7 +3,7 @@
 Plugin Name: ChatMe ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 3.0.1
+Version: 3.0.2
 Author: camaran
 Author URI: http://www.chatme.im
 */
@@ -12,16 +12,28 @@ if(!class_exists('ChatMe_mini_ShortCodes')) {
 
 class ChatMe_mini_ShortCodes {
 
-private $jappix_url = 'https://webchat.chatme.im';
-private $chat_domains = "http://webchat.domains";
-private $muc_url = 'http://muc.chatme.im';
-private $conference_domain = '@conference.chatme.im';
-private $room = '<option value="piazza@conference.chatme.im">Piazza</option>
-					<option value="support@conference.chatme.im">Support</option>
-					<option value="rosolina@conference.chatme.im">Rosolina</option>
-					<option value="politica@conference.chatme.im">Politica</option>';
-private $domains_status = "http://webchat.domains/status/";
-private $status = "http://webchat.chatme.im/status/";
+private $jappix_url 			= 'https://webchat.chatme.im';
+private $chat_domains 			= "http://webchat.domains";
+private $muc_url 				= 'http://muc.chatme.im';
+private $conference_domain 		= '@conference.chatme.im';
+private $room 					= '<option value="piazza@conference.chatme.im">Piazza</option>
+									<option value="support@conference.chatme.im">Support</option>
+									<option value="rosolina@conference.chatme.im">Rosolina</option>
+									<option value="politica@conference.chatme.im">Politica</option>';
+private $domains_status 		= "http://webchat.domains/status/";
+private $status 				= "http://webchat.chatme.im/status/";
+//Default Variables
+//userStatus
+private $userStatus_user      	= 'admin@chatme.im';
+private $userStatus_hosted    	= false;
+private $userStatus_link      	= false;
+//chatRoom	
+private $chatRoom_anon 			= true;
+//chatRoomIframe
+private $chatRoomIframe_room	= 'piazza';
+private $chatRoomIframe_width	= '100%';
+private $chatRoomIframe_height	= '100%';
+private $chatRoomIframe_hosted 	= false;
 
 	function __construct() {
 		self::register_shortcodes( $this->shortcodes_core() );
@@ -41,9 +53,9 @@ private $status = "http://webchat.chatme.im/status/";
     function userStatus_short($atts)
 	    {	
 		    $defaults = array(
-			    'user'      => 'admin@chatme.im',
-			    'hosted'    => false,
-			    'link'      => false,
+			    'user'      => $this->userStatus_user,
+			    'hosted'    => $this->userStatus_hosted,
+			    'link'      => $this->userStatus_link,
 			    );
             $atts = shortcode_atts( $defaults, $atts );    
                 
@@ -60,7 +72,7 @@ private $status = "http://webchat.chatme.im/status/";
     function chatRoom_short($atts)
 	    {
 		    $defaults = array(
-			    'anon' => true,
+			    'anon' => $this->chatRoom_anon,
 			    );
             $atts = shortcode_atts( $defaults, $atts );    
                 
@@ -84,14 +96,14 @@ private $status = "http://webchat.chatme.im/status/";
 		    }
 	    }
 
-    //Stato utente [chatRoomIframe room="room" width="width" height="height"]
+    //Iframe Chat Room [chatRoomIframe room="room" width="width" height="height"]
     function chatRoomIframe_short($atts)
 	    {	
 		    $defaults = array(
-			    'room' => 'piazza',
-			    'width' => '100%',
-			    'height' => '100%',
-			    'hosted' => false,
+			    'room' 		=> $this->chatRoomIframe_room,
+			    'width' 	=> $this->chatRoomIframe_width,
+			    'height' 	=> $this->chatRoomIframe_height,
+			    'hosted' 	=> $this->chatRoomIframe_hosted,
 			    );
                 $atts = shortcode_atts( $defaults, $atts );
                 
