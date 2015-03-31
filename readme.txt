@@ -1,10 +1,10 @@
-=== ChatMe ShortCode ===
+﻿=== ChatMe ShortCode ===
 Contributors: camaran
 Donate link: http://www.chatme.im
 Tags: chat, jabber, jappix, mini, xmpp, shortcode, chatme
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 3.0.4
+Stable tag: 3.1.0
 
 This plugin add ChatMe Shortcode to Wordpress.
 
@@ -57,6 +57,9 @@ ShortCode [swatchTime] for show Internet Swatch Time
 Other ShortCode will be available soon with plugin update.
 
 == Changelog ==
+
+= 3.1.0 =
+* Add Help Page
 
 = 3.0.4 = 
 * New Conferece URL and API
@@ -132,6 +135,9 @@ Other ShortCode will be available soon with plugin update.
 * First public version
 
 == Upgrade Notice ==
+
+= 3.1.0 =
+* Add Help Page
 
 = 3.0.4 = 
 * New Conferece URL and API

@@ -1,135 +1,51 @@
-<?php
+﻿<?php
 /*
 Plugin Name: ChatMe ShortCode
 Plugin URI: http://www.chatme.im/
 Description: This plugin add ChatMe Shortcode to Wordpress.
-Version: 3.0.4
+Version: 3.1.0
 Author: camaran
 Author URI: http://www.chatme.im
 */
 
-if(!class_exists('ChatMe_mini_ShortCodes')) {
+add_action('admin_menu', 'chatme_shortcode_menu' );
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'add_action_messenger_links' );
 
-class ChatMe_mini_ShortCodes {
+	function add_action_messenger_links ( $links ) {
+      	$mylinks = array( '<a href="' . admin_url( 'options-general.php?page=chatme-shortcode' ) . '">Help Page</a>', );
+      	return array_merge( $links, $mylinks );
+    }
 
-private $jappix_url 			= 'https://webchat.chatme.im';
-private $chat_domains 			= "http://webchat.domains";
-private $muc_url 				= 'http://conference.webchat.chatme.im';
-private $conference_domain 		= '@conference.chatme.im';
-private $room 					= '<option value="piazza@conference.chatme.im">Piazza</option>
-									<option value="support@conference.chatme.im">Support</option>
-									<option value="rosolina@conference.chatme.im">Rosolina</option>
-									<option value="politica@conference.chatme.im">Politica</option>';
-private $domains_status 		= "http://webchat.domains/status/";
-private $status 				= "http://webchat.chatme.im/status/";
-private $chat_powered 			= '<div><small>Chat powered by <a href="http://chatme.im" target="_blank">ChatMe</a></small></div>';
-//Default Variables
-//userStatus
-private $userStatus_user      	= 'admin@chatme.im';
-private $userStatus_hosted    	= false;
-private $userStatus_link      	= false;
-//chatRoom	
-private $chatRoom_anon 			= true;
-//chatRoomIframe
-private $chatRoomIframe_room	= 'piazza';
-private $chatRoomIframe_width	= '100%';
-private $chatRoomIframe_height	= '100%';
-private $chatRoomIframe_hosted 	= false;
-private $chatRoomIframe_powered = true;
-
-	function __construct() {
-		self::register_shortcodes( $this->shortcodes_core() );
+	function chatme_shortcode_menu() {
+  		$my_admin_page = add_options_page('ChatMe Shortocode Help', 'ChatMe Shortcode Help', 'manage_options', 'chatme-shortcode', 'mini_shortcode_help' );
 	}
 
-	private function shortcodes_core() {
-		$core = array(
-			'userStatus'			=>	array( 'function' => 'userStatus_short' ),
-			'chatRoom'			    =>	array( 'function' => 'chatRoom_short' ),
-			'chatRoomIframe'		=>	array( 'function' => 'chatRoomIframe_short' ),
-			'swatchTime'			=>	array( 'function' => 'swatchTime_short' ),
-			);
-		return $core;
+function mini_shortcode_help() {
+  		if (!current_user_can('manage_options'))  {
+    	wp_die( __('You do not have sufficient permissions to access this page.', 'chatmeim-mini-messenger') );
+  		} 
+	?>
+ 	<div class="wrap">
+	<h2>ChatMe Shortocode Help</h2>
+	<p><b>[userStatus user="users" link=1 hosted=0]</b><br/>This code show user status (online/offline/etc):<ul><li><b>user</b>: insert the user with the domain (example: user@chatme.im)</li><li><b>link</b> (boolean): can be 0 (default) for not link and 1 for link to the user</li><li><b>hosted</b> (boolean): can be 0 (default) for not hosted domain and 1 if you have a custom domain hosted in ChatMe XMPP server</li></ul></p> 
+	<p><b>[chatRoom anon=1]</b><br/>This code show a list of default chat room.<ul><li><b>anon</b> (boolean): can be 0 for not anonymous login (require username and password) or 1 (default) for chat only with nickname.</li></ul></p> 
+	<p><b>[chatRoomIframe room="room" width="width" height="height" hosted=0]</b><br/>This shortcode show a chat room in your wordpress page:<ul><li><b>room</b>: the name of the chat room (default: piazza@conference.chatme.im)</li><li><b>width</b>: the frame width (default: 100%)</li><li><b>height</b>: the height of frame (default: 100%)</li><li><b>hosted</b> (boolean): can be 0 (default) for not hosted domain and 1 if you have a custom domain hosted in ChatMe XMPP server</li></ul></p> 
+	<p><b>[swatchTime]</b><br/>This shortcode show Internet Swatch Time.</p> 
+	<p>For more information visit our <a href="http://chatme.im/forums" target="_blank">forum</a></p> 
+
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="8CTUY8YDK5SEL">
+		<input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
+		<img alt="" border="0" src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif" width="1" height="1">
+	</form>
+
+	<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://chatme.im" data-text="Visita chatme.im" data-via="chatmeim" data-lang="it">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+	</div>
+<?php 
 	}
 
-    //Stato utente [userStatus user="users" link="1"]
-    function userStatus_short($atts)
-	    {	
-		    $defaults = array(
-			    'user'      => $this->userStatus_user,
-			    'hosted'    => $this->userStatus_hosted,
-			    'link'      => $this->userStatus_link,
-			    );
-            $atts = shortcode_atts( $defaults, $atts );    
-                
-            $link = ((bool)$atts['link']) ? ' <a href="xmpp:'. $atts['user'] . '" title="Chatta con ' . $atts['user'] . '">' . $atts['user'] . '</a>' : '';
-            
-            if ((bool)$atts['hosted']) {
-		        return  '<img src="' . $this->domains_status . $atts['user'] . '" alt="Status">' . $link;
-            } else {
-		        return '<img src="' . $this->status . $atts['user'] . '" alt="Status">' . $link;		
-            }
-	    }	
-	
-    //Chat Room [chatRoom anon="1"]	
-    function chatRoom_short($atts)
-	    {
-		    $defaults = array(
-			    'anon' => $this->chatRoom_anon,
-			    );
-            $atts = shortcode_atts( $defaults, $atts );    
-                
-		    if (!(bool)$atts['anon'])  {	
-                
-		    return '<form method="get" action="' . $this->muc_url . '" target="_blank" class="form-horizontal">
-            	    <select name="room">
-					    ' . $this->room . '
-				    </select>
-                <button type="submit">Entra nella stanza</button>
-            </form> ';
-		    } else {
-                
-		    return '<form method="get" action="' . $this->jappix_url . '" target="_blank">
-            	    <select name="r">
-					    ' . $this->room . '
-				    </select>
-    			    <input type="text" name="n" placeholder="Nickname" autocomplete="off">
-        	    <button type="submit">Entra nella stanza</button>
-            </form> ';
-		    }
-	    }
-
-    //Iframe Chat Room [chatRoomIframe room="room" width="width" height="height"]
-    function chatRoomIframe_short($atts)
-	    {	
-		    $defaults = array(
-			    'room' 		=> $this->chatRoomIframe_room,
-			    'width' 	=> $this->chatRoomIframe_width,
-			    'height' 	=> $this->chatRoomIframe_height,
-			    'hosted' 	=> $this->chatRoomIframe_hosted,
-				'powered' 	=> $this->chatRoomIframe_powered,
-			    );
-                $atts = shortcode_atts( $defaults, $atts );
-                
-				$chat_url = ((bool)$atts['hosted']) ? $this->chat_domains : $this->jappix_url;
-				$powered = ((bool)$atts['powered']) ? $this->chat_powered : '';
-				
-				return '<div class="cm-iframe-room"><iframe src="' . $chat_url . '/?r='. $atts['room'] . $this->conference_domain . '" width="' . $atts['width'] . '" height="' . $atts['height'] . '" border="0">Il tuo browser non supporta iframe</iframe>' . $powered . '</div>';		
-	    }
-
-    //Internet Swatch Time [swatchTime]
-    function swatchTime_short()
-	    {	
-		return "Internet Swatch Time <strong>@" . date('B') . "</strong>";
-	    }
-
-    //Registro tutti gli shortcode della classe
-	    private function register_shortcodes( $shortcodes ) {
-		    foreach ( $shortcodes as $shortcode => $data ) {
-			    add_shortcode( $shortcode, array( $this, $data['function']) );
-		    }
-	    }
-
-}
-}
-new ChatMe_mini_ShortCodes;			
+require_once( 'class.shortcode.php' );
 ?>
