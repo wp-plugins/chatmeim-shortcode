@@ -1,7 +1,7 @@
 <?php
-if(!class_exists('ChatMe_mini_ShortCodes')) {
+namespace ChatMe;
 
-class ChatMe_mini_ShortCodes {
+class mini_ShortCodes {
 
 private $default = array(
 			'jappix_url' 		        => 'https://webchat.chatme.im',
@@ -124,6 +124,5 @@ private $default = array(
 	    }
 
 }
-}
-new ChatMe_mini_ShortCodes;			
+new \ChatMe\mini_ShortCodes;			
 ?>
